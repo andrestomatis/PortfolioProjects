@@ -48,7 +48,6 @@ GROUP BY 1,2
 ORDER BY 4 desc
 
 
-
 -- Countries with highest deaths count
 
 SELECT
@@ -66,6 +65,8 @@ FROM `covid-361719.covid19.covid_deaths`
 WHERE continent is not null
 GROUP BY 1
 ORDER BY 2 desc
+
+
 
 -- Global Numbers
 
@@ -124,9 +125,7 @@ FROM PopVsVac
 ORDER BY 2,3
 
 
-
-
-
+-- Another way to show the same 
 
 
 DROP TABLE if exists covid-361719.covid19.PercentagePopulationVaccinated
@@ -157,7 +156,6 @@ SELECT *, round((RollingPeopleVaccinated/population)*100, 3) as VaccinationRate
 FROM covid-361719.covid19.PercentagePopulationVaccinated
 
 
-
 -- Creating view to store data for later
 
 create view covid-361719.covid19.PercentagePopulationVaccinated as
@@ -170,6 +168,10 @@ from
   on dea.location = vac.location
   and dea.date = vac.date
 where dea.continent is not null 
+
+
+
+-- I hope you enjoy it, thank you all
 
 
 
