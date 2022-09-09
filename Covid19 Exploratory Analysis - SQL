@@ -1,3 +1,12 @@
+/*
+Covid 19 Data Exploratory analysis
+We are going to be using skills like Joins, Temp Tables, Aggregate Functions, Creating Views, Creating and dropping tables, and Converting Data Types.
+Let's do it.
+*/
+
+
+
+
 -- Covid Deaths data
 
 SELECT * FROM `covid-361719.covid19.covid_deaths`
