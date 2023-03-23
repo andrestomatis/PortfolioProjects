@@ -12,12 +12,16 @@ FROM CovidDeaths
 WHERE continent IS NOT NULL
 ORDER BY 3,4
 
+
+
 -- Data that we are going to be using 
 
 SELECT location, date, total_cases, new_cases, total_deaths, population
 FROM CovidDeaths
 WHERE continent IS NOT NULL
 ORDER BY 1,2
+
+
 
 -- Total Cases vs Total Deaths in my country (Argentina)
 
@@ -27,6 +31,8 @@ FROM CovidDeaths
 WHERE continent IS NOT NULL and location = 'Argentina'
 ORDER BY 1,2
 
+
+
 -- Total Cases vs Population
 
 SELECT location, date, total_cases, population,
@@ -34,6 +40,8 @@ SELECT location, date, total_cases, population,
 FROM CovidDeaths
 WHERE location = 'Argentina'
 ORDER BY 1,2
+
+
 
 -- Countries with Highest Infection Rate
 
@@ -44,6 +52,8 @@ WHERE continent IS NOT NULL
 GROUP BY location, population
 ORDER BY 4 DESC
 
+
+
 -- Countries with Highest Death Rate
 
 SELECT location, population, MAX(CAST(total_cases AS int)) AS HighestInfectionCount, 
@@ -53,6 +63,8 @@ WHERE continent IS NOT NULL
 GROUP BY location, population
 ORDER BY 4 DESC
 
+
+
 -- Deaths Count per continent
 
 SELECT continent, MAX(CAST(total_deaths AS int)) AS TotalDeaths
@@ -60,6 +72,8 @@ FROM CovidDeaths
 WHERE continent IS NOT NULL
 GROUP BY continent
 ORDER BY TotalDeaths DESC
+
+
 
 -- Global Numbers
 
@@ -77,6 +91,8 @@ FROM CovidDeaths
 WHERE continent IS NOT NULL
 
 
+
+
 -- Population vs Vaccination
 
 SELECT dea.continent, dea.location, dea.date, dea.population, new_vaccinations,
@@ -87,6 +103,8 @@ JOIN CovidVaccinations vac
 	and dea.date = vac.date
 WHERE dea.continent  IS NOT NULL
 ORDER BY 2,3
+
+
 
 
 -- Using CTE to perform Calculation on Partition By in previous query
@@ -104,6 +122,7 @@ WHERE dea.continent  IS NOT NULL
 )
 SELECT *, (RollingVaccinationCount/Population)*100
 From PopVsVac
+
 
 
 
@@ -133,6 +152,8 @@ SELECT *, (RollingPeopleVaccinated/Population)*100
 FROM #PercentPopulationVaccinated
 
 
+
+
 -- Creating view to store data for future visualizations
 
 CREATE VIEW PercentPopulationVaccinated AS
@@ -143,3 +164,8 @@ JOIN CovidVaccinations vac
 	ON dea.location = vac.location
 	and dea.date = vac.date
 WHERE dea.continent  IS NOT NULL
+
+
+
+
+
